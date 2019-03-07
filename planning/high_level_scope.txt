@@ -1,0 +1,78 @@
+Issue Tracker Project
+
+The purpose of this doc is to give a high level overview of that the ticket tracker will look like and outline a minimum viable product.
+This doc will lead into the creation of User Stories and tickets which will be added to https://trello.com/b/aKFZcGf5/issuetracker
+
+***ENTITIES***
+
+We have two types of users.  A DEV and a USER.  A DEv user requires a log in, and normal using does not.
+
+- DEV user
+-- Can view the public facing ticket dashboard.
+-- Can log into as a Developer.
+-- Can accept or reject a ticket for work.
+-- Can create and edit tickets.
+-- Can add comments to tickets.
+
+- USER user
+-- No log in required
+-- Can view the public facing ticket dashboard
+-- Can create tickets.
+-- Can add user comments to a ticket.
+-- Can upvote a ticket.
+-- Can submit a payment for some ticket actions
+
+
+
+***TICKETS***
+
+A ticket is where most of the "work" happens.  A DEV user will be able to edit most data points on a ticket.  
+A USER user will only be able to add a user comment and upvote a ticket.
+
+
+TICKET Model (What will a ticket look like)
+- ID
+- TYPE (BUG / FEATURES)- (note paid features apply where.) 
+- SUBJECT
+- DESCIRPTION
+- PRIORITY (MINOR, NORMAL, HIGH, CIRTICAL)
+- STATUS (NEW, ACCEPTED, REJECT, ACTIVE, COMPLETE)
+- CREATED_AT
+- COMMENTS
+- DEV_UPDATED_AT
+- DUE_DATE
+- DONE_DATE
+- UP_VOTE
+- USER_UPDATED_AT 
+- ACCEPTED
+
+
+
+*** TICKET STAGING AREA ***
+Before a ticket is viewable on the dashboard.  A DEV user must accept or reject a ticket.  New tickets that are submitted by a user are displayed where.  
+
+
+
+*** DASHBOARD ***
+
+The DASHBOARD is the main landing page for the application.  We will show a list of tickets, top 10, most upvoted, etc.
+When you are logged in we treate the user as a DEV.  Otherwise we see the user as a USER
+
+points to show on the DASHBOARD
+- Show top 10 open features ordered by most voted, then priority, created date
+- Show top 10 open features ordered by most voted, then priority, created date
+- date filter by date 
+- Search by ticket id.
+- add graphs where possible.
+- can open a ticket, view updates and add user comments (as a USER)
+- can open a ticket, view updates and edit tickets (as a DEV)
+
+
+
+*** PAID FEATURES ***
+BUG type tickets have no payments features.
+
+FEATURES type tickets have payments added in.
+- As a user adding a new feature will require a payment.
+- As a user upvoting a new feature will require a payment.
+- If you are logged in as a DEV you bypass payments.
