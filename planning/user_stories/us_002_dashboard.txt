@@ -1,0 +1,39 @@
+us_002_01 : 
+AS a user
+WHEN I land on the home page
+THEN I will see the ticket dashbaord
+
+us_002_02 :
+AS a user
+WHEN I land on the home page
+AND I log in
+THEN I will see the ticket dashbaord
+AND There will be linkes to the dev areas
+
+us_002_03 :
+AS a user
+WHEN I land on the home page
+AND There are no tickets on the Dashboard
+THEN I will see a message to submit a ticket
+
+us_002_04 :
+AS a user
+WHEN I land on the home page
+AND There are tickets on the Dashboard
+THEN I will the tickets on the Dashboard
+
+us_002_05 :
+AS a user
+WHEN I land on the home page
+AND There are tickets on the Dashboard
+AND I open a ticket on the Dashboard
+THEN i will see the ticket Description and Comments
+
+us_002_06 :
+AS a user
+WHEN I land on the home page
+AND There are tickets on the Dashboard
+AND I open a ticket on the Dashboard
+AND I Click on the New Comment button
+AND I add a Comment
+THEN the comment will be Saved

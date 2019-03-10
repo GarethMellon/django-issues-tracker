@@ -1,0 +1,45 @@
+us_003_01 : 
+AS a user
+AND I land on the home page
+WHEN I click on the Submit New Ticket button
+Then I will see the new ticket form
+
+us_003_02 : 
+AS a user
+AND I land on the home page
+WHEN I click on the Submit New Ticket button
+AND I submit a BUG
+Then the ticket will be submitted
+
+us_003_03 : 
+AS a user
+AND I land on the home page
+WHEN I click on the Submit New Ticket button
+AND I submit a FEATURE
+Then I will be prompted to pay a fee
+
+us_003_04 : 
+AS a user
+AND I land on the home page
+WHEN I click on the Submit New Ticket button
+AND I submit a FEATURE
+AND I pay the fee
+THEN the ticket will be submitted
+
+us_003_05 : 
+AS a user
+WHEN I submit a ticket
+THEN I will see the ticket appear in the dev staging area
+AND I will not see the tucket in the dev work area
+
+us_003_06 : 
+AS a DEV user
+WHEN I submit a ticket
+THEN I will not see the ticket appear in the dev staging area
+AND I will see the tucket in the dev work area
+
+us_003_07 : 
+AS a DEV user
+WHEN I submit a ticket
+AND the ticket is a FEATURE
+THEN I will not be prompted to pay a fee

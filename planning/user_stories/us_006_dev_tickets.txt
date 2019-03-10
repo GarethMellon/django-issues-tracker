@@ -1,0 +1,28 @@
+us_006_01 : 
+AS a DEV
+AND I am in the Dev Work Area
+WHEN I open a ticket
+THEN i will see the ticket form
+
+us_006_02 : 
+AS a DEV
+AND I am in the Dev Work Area
+WHEN I open a ticket
+AND I make a change to a ticket and save
+THEN the ticket will be saved
+
+us_006_03 : 
+AS a DEV
+AND I am in the Dev Work Area
+WHEN I open a ticket
+AND Click on the View Comments button
+THEN I will see any previous comments
+
+us_006_04 : 
+AS a DEV
+AND I am in the Dev Work Area
+WHEN I open a ticket
+AND Click on the New Comment button
+AND I add a new comments
+AND click on Save
+THEN the comment will be saved

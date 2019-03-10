@@ -1,0 +1,26 @@
+us_004_01 : 
+AS a DEV
+AND I log in
+WHEN I click on the Dev Staging link
+AND there are no tickets in the staging area
+THEN I will see a message at there are not ticket
+
+
+us_004_02 : 
+AS a DEV
+AND I log in
+WHEN I click on the Dev Staging link
+AND there are tickets in the staging area
+THEN I will some tickets
+
+us_004_03 : 
+AS a DEV
+AND I am on the ticket staging area
+WHEN I Accept a ticket
+THEN the ticket will appear in the dev work area
+
+us_004_04 : 
+AS a DEV
+AND I am on the ticket staging area
+WHEN I Reject a ticket
+THEN the ticket will not appear in the dev work area

@@ -1,0 +1,15 @@
+us_001_01 : 
+AS a user how is on the home page
+WHEN I log in
+THEN I will be a DEV user
+
+us_001_02 : 
+AS a user how is on the home page
+WHEN I log in
+THEN I will see links too the DEV Staging area
+AND I will see links too the DEV Ticket area
+
+us_001_03 : 
+AS A DEV user
+WHEN I log out
+THEN I will be a User user
