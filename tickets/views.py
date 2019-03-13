@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import TicketForm, CommentForm
 
 # Create your views here.
 
@@ -14,7 +15,9 @@ def new_ticket(request):
     """
     A view that will return a page with a new ticket input form
     """
-    return render(request, "ticket.html")
+    form = TicketForm() 
+    
+    return render(request, "ticket.html", {'form': form})
     
 
 def view_comments(request, id):
@@ -27,4 +30,7 @@ def new_comment(request, id):
     """
     A view that will return a new comment input form
     """
-    return render(request, "new_comment.html")
+    
+    form = CommentForm()
+    
+    return render(request, "new_comment.html", {'form':form})
