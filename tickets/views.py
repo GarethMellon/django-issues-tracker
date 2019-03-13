@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import TicketForm, CommentForm
+from .models import Ticket, Comment
 
 # Create your views here.
 
@@ -8,7 +9,11 @@ def view_ticket(request, id):
     """
     A view that will return a page with a current ticket
     """
-    return render(request, "ticket.html")
+    
+    ticket = get_object_or_404(Ticket, pk=id)
+    form = TicketForm(request.POST, instance=ticket)
+    
+    return render(request, "ticket.html", {'form': form})
     
 
 def new_ticket(request):
@@ -24,7 +29,9 @@ def view_comments(request, id):
     """
     A view that will return all current comments for a ticket
     """
-    return render (request, "comments.html")
+    comments = Comment.objects.filter(ticket=id)
+    
+    return render (request, "comments.html", {'comments': comments})
     
 def new_comment(request, id):
     """

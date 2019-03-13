@@ -6,4 +6,11 @@
 
 {% block content %}
 <h2>COMMENTS</h2>
+<br>
+{% for comment in comments %}
+    {{comment.created}}<br>
+    {{comment.comment_type}}<br>
+    {{comment.comment}}<br><br>
+{% endfor %}
+
 {% endblock %}
