@@ -49,7 +49,8 @@ class Ticket(models.Model):
     due_date = models.DateTimeField(null=True, blank=True)
     done_date = models.DateTimeField(null=True, blank=True)
     up_vote = models.IntegerField(default=0, blank=True)
-    accept = models.CharField(max_length=4, default="0", choices=(("0","0"),("1","1")), blank=False)
+    accept = models.BooleanField(default=False)
+    #accept = models.CharField(max_length=4, default="0", choices=(("0","0"),("1","1")), blank=False)
     upload_files = models.FileField(upload_to='upload_files', blank=True)
     
     def __str__(self):
