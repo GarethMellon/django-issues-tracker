@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 
@@ -52,6 +52,11 @@ def new_comment(request, id):
     """
     A view that will return a new comment input form
     """
+    if request.method=="POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('view_ticket', id=id)
     
     form = CommentForm()
     
