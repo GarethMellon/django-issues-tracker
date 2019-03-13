@@ -27,6 +27,14 @@ def new_ticket(request):
     """
     A view that will return a page with a new ticket input form
     """
+    if request.method=="POST":
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("____SAVED FORM____") ## placeholder code
+        else:
+            return HttpResponse("____we post____") ## placeholder code
+            
     form = TicketForm() 
     
     return render(request, "ticket.html", {'form': form})
