@@ -2,17 +2,20 @@ from django.db import models
 
 # Create your models here.
 
-    
+
 class Comment(models.Model):
     comment_choices=(
         ('Dev',"Dev"),
         ('User', "User")
         )
     
-    ticket_ref = models.ForeignKey('Ticket', on_delete=models.CASCADE)
+    ticket = models.ForeignKey('Ticket', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, blank=False)
-    comment = models.TextField(blank=False)
-    comment_type = models.CharField(max_length=10, choices=comment_choices, blank=False)
+    comment = models.TextField(blank=True)
+    comment_type = models.CharField(max_length=20, choices=comment_choices, blank=False, default="User")
+    
+    def __str__(self):
+        return self.comment
     
     
 class Ticket(models.Model):
@@ -36,16 +39,18 @@ class Ticket(models.Model):
         ('Complete', "Complete")
         )
     
-    ticket_type = models.CharField(max_length=10, choices = type_choices, blank=False)
+    ticket_type = models.CharField(max_length=20, choices = type_choices, blank=False)
     subject = models.CharField(max_length= 256, blank=False)
     description = models.TextField( blank=False)
     email = models.EmailField(max_length=254, blank=False)
-    priority = models.CharField(max_length=10, choices=priority_choices, default='Minor', blank=False)
-    status = models.CharField(max_length=10, choices=status_choices, default='New', blank=False)
+    priority = models.CharField(max_length=20, choices=priority_choices, default='Minor', blank=False)
+    status = models.CharField(max_length=20, choices=status_choices, default='New', blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False)
-    due_date = models.DateTimeField(blank=True)
-    done_date = models.DateTimeField(blank=True)
-    up_vote=models.IntegerField(default=0, blank=False)
-    accept = models.BinaryField(default=0, blank=False)
+    due_date = models.DateTimeField(null=True, blank=True)
+    done_date = models.DateTimeField(null=True, blank=True)
+    up_vote = models.IntegerField(default=0, blank=True)
+    accept = models.CharField(max_length=4, default="0", choices=(("0","0"),("1","1")), blank=False)
     upload_files = models.FileField(upload_to='upload_files', blank=True)
-    comments = models.ManyToManyField(Comment)
+    
+    def __str__(self):
+        return self.subject
