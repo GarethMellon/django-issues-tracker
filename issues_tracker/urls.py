@@ -17,10 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from dashboard.views import dashboard_page
 from accounts import urls as accounts_urls
+from tickets import urls as tickets_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', dashboard_page),
     url(r'^accounts/', include(accounts_urls)),
+    url(r'^tickets/', include(tickets_urls)),
 
 ]
