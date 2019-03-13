@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 
@@ -7,11 +7,18 @@ from .models import Ticket, Comment
 
 def view_ticket(request, id):
     """
-    A view that will return a page with a current ticket
+    A view and edit that will return a page with a current ticket
     """
-    
-    ticket = get_object_or_404(Ticket, pk=id)
-    form = TicketForm(request.POST, instance=ticket)
+    if request.method == "POST":
+        form = TicketForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return HttpResponse("____SAVED FORM____") ## placeholder code
+        else:
+            return HttpResponse("_______we post______") ## placeholder code
+    else:
+        ticket = get_object_or_404(Ticket, pk=id)
+        form = TicketForm(instance=ticket)
     
     return render(request, "ticket.html", {'form': form})
     

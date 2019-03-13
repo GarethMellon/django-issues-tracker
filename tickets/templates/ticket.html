@@ -10,7 +10,8 @@
 <br>
 
 <form method="POST">
-
+    {% csrf_token %}
+    
     {{ form|as_bootstrap }}
 
     <input type="submit" value="Submit"/>
