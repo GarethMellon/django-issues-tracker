@@ -1,5 +1,4 @@
-
-.main-content{
+.main-content {
     margin-top: 100px;
 }
 
@@ -9,4 +8,27 @@ footer {
 
 body {
     background-color: #e6e6e6;
+}
+
+/* Dashboard styles */
+.ticket {
+    height: 100px;
+    margin: 10px 10px 10px 10px;
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.dashboard-subject {
+    width: 67%;
+    display: inline-block;
+    margin: 5px 5px 5px 5px;
+}
+
+.up-vote {
+    font-size: xx-large;
+    margin: 5px 5px 5px 5px;
+}
+
+.btn-dashboard {
+    width: 100%;
 }
