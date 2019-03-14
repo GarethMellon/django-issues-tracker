@@ -19,8 +19,8 @@ def view_ticket(request, id):
     else:
         ticket = get_object_or_404(Ticket, pk=id)
         form = TicketForm(instance=ticket)
-    
-    return render(request, "ticket.html", {'form': form})
+        
+    return render(request, "ticket.html", {'form': form, 'id':ticket.id})
     
 
 def new_ticket(request):
