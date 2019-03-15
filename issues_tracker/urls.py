@@ -21,7 +21,7 @@ from tickets import urls as tickets_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', dashboard_page),
+    url(r'^$', dashboard_page, name="dashboard_page"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^tickets/', include(tickets_urls)),
 
