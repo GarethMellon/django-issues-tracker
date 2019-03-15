@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
+from issues_tracker.urls import url
 
 # Create your views here.
 
@@ -31,7 +32,7 @@ def new_ticket(request):
         form = TicketForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("____SAVED FORM____") ## placeholder code
+            return redirect('/')
         else:
             return HttpResponse("____we post____") ## placeholder code
             

@@ -1,6 +1,4 @@
-.main-content {
-    margin-top: 100px;
-}
+
 
 footer {
     margin-top: 10px;
@@ -11,6 +9,11 @@ body {
 }
 
 /* Dashboard styles */
+
+.info-bar {
+    margin-top: 60px
+}
+
 .ticket {
     height: 100px;
     margin: 10px 10px 10px 10px;

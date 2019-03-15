@@ -19,7 +19,9 @@
     
 </form>
 
-<a href="{% url 'view_comments' id %}" class="btn btn-default">View Comments</a>
-<a href="{% url 'new_comment' id %}" class="btn btn-default">Add Comment</a>
+{% if id %}
+    <a href="{% url 'view_comments' id %}" class="btn btn-default">View Comments</a>
+    <a href="{% url 'new_comment' id %}" class="btn btn-default">Add Comment</a>
+{% endif %}
 
 {% endblock %}
