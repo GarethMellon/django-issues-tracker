@@ -6,15 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<h2>NEWCOMMENTS</h2>
-<br>
 
-<form method="POST">
-    
-    {% csrf_token %}
+<div class="container">
+    <div class="jumbotron">
+        <form method="POST">
+        
+            {% csrf_token %} {{ form|as_bootstrap }}
+        
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</div>
 
-    {{ form|as_bootstrap }}
-
-    <input type="submit" value="Submit"/>
-</form>
 {% endblock %}

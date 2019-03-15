@@ -14,7 +14,7 @@ def logout(request):
     """ log the user out """
     auth.logout(request)
     messages.success(request, "You have successfully been logged out!")
-    return redirect(reverse('index'))
+    return redirect(reverse('dashboard_page'))
     
 def login(request):
     """return a log in page"""
@@ -29,7 +29,7 @@ def login(request):
             if user:
                 auth.login(user = user, request=request)
                 messages.success(request, "you have successfully logged in!")
-                return redirect(reverse('index'))
+                return redirect(reverse('profile'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
     else:
@@ -44,7 +44,7 @@ def profile(request):
 def registration(request):
     """ render the registration page"""
     if request.user.is_authenticated():
-        return redirect(reverse('index'))
+        return redirect(reverse('dashboard_page'))
         
     if request.method=="POST":
         registration_form = UserRegistrationForm(request.POST)

@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Development Ticket {% endblock %} {% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="container jumbotron">
+                <form>
+                    {{ form|as_bootstrap }}
+                    <input type="submit" name="Save" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

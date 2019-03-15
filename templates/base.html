@@ -37,11 +37,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                    <li><a href="#">Staging Area</a></li>
-                    <li><a href="#">Work Area</a></li>
+                    <li><a href="{% url 'staging' %}">Ticket Staging Area</a></li>
+                    <li><a href="{% url 'dev_area' %}">Development Area</a></li>
+                    <li><a href="{% url 'profile' %}">Developer Profile</a></li>
+                    <li><a href="{% url 'new_ticket' %}">Add Ticket</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{% url 'registration' %}">Register</a></li>
+                    <li><a href="{% url 'registration' %}">Developer Register</a></li>
+                    <li><a href="{% url 'new_ticket' %}">Add Ticket</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
                 </ul>
@@ -56,12 +59,15 @@
     </div>
     {% endif %}
 
-    <!-- log in and dev bar-->
+    {% if user.is_anonymous  %}
+    <!-- info bar -->
     <div class="container info-bar">
         <div class="row">
-            <a href="{% url 'new_ticket' %}" class="btn btn-default">Add New Ticket</a>
+            <p>Are you a developer, log in <a href="{% url 'login' %}">HERE</a></p>
+            <!--<a href="{% url 'new_ticket' %}" class="btn btn-default">Add New Ticket</a>-->
         </div>
     </div>
+    {% endif %}
 
     <!-- main content loads hwere-->
     <div class="main-content">

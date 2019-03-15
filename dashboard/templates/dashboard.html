@@ -1,6 +1,4 @@
 {% extends 'base.html' %} {% block page_title %} Dashboard {% endblock %} {% block content %}
-<h2>this page is a dashboard</h2>
-
 <div class="row">
 
     <div class="container jumbotron">
@@ -9,7 +7,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
             <div class="row dashboard-subject">
-                <span>{{ ticket.subject }} / {{ ticket.id }}</span>
+                <span>{{ ticket.subject }}</span>
             </div>
             <a href="#" class="up-vote"><i class="fas fa-arrow-up"></i></a>
             <br>
