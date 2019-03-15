@@ -36,3 +36,9 @@ body {
 .btn-dashboard {
     width: 100%;
 }
+
+/* staging board */
+
+.btn-staging {
+    width: 50%;
+}
