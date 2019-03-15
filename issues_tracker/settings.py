@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'dashboard',
     'tickets',
+    'dev_area',
 ]
 
 MIDDLEWARE = [

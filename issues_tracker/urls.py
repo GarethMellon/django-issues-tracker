@@ -18,11 +18,13 @@ from django.contrib import admin
 from dashboard.views import dashboard_page
 from accounts import urls as accounts_urls
 from tickets import urls as tickets_urls
+from dev_area import urls as dev_area_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', dashboard_page, name="dashboard_page"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^tickets/', include(tickets_urls)),
+    url(r'^development/', include(dev_area_urls)),
 
 ]
