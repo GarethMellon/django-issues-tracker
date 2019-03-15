@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+{% block page_title %}
+    Staging
+{% endblock %}
+
+{% block content %}
+
+<h2>this is the stanging tick</h2>
+
+<div class="row">
+
+    <div class="container jumbotron">
+        <form>
+            {{ form|as_bootstrap }}
+        </form>
+        <div class="row action-row">
+            <a href="#" class="btn btn-success btn-staging"/>Accept</a>
+            <a href="#" class="btn btn-danger btn-staging"/>Reject</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

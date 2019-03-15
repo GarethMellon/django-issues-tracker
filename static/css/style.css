@@ -40,5 +40,9 @@ body {
 /* staging board */
 
 .btn-staging {
-    width: 50%;
+    width: 40%;
+}
+
+.action-row {
+    text-align: center;
 }
