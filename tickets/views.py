@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
+from django.contrib import messages
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 from issues_tracker.urls import url
@@ -14,7 +15,8 @@ def view_ticket(request, id):
         form = TicketForm(request.POST)
         if form.is_valid:
             form.save()
-            return HttpResponse("____SAVED FORM____") ## placeholder code
+            messages.success(request, "You're ticket has been saved!")
+            return redirect("/")
         else:
             return HttpResponse("_______we post______") ## placeholder code
     else:
@@ -33,8 +35,6 @@ def new_ticket(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-        else:
-            return HttpResponse("____we post____") ## placeholder code
             
     form = TicketForm() 
     
@@ -70,7 +70,5 @@ def up_vote(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.up_vote += 1
     ticket.save()
-    print("___________")
-    print(ticket.up_vote)
-    print("___________")
+    
     return redirect("/")

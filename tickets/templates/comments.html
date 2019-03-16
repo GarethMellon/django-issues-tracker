@@ -2,11 +2,15 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h2>COMMENTS</h2>
-        <br> {% for comment in comments %} {{comment.created}}
-        <br> {{comment.comment_type}}
-        <br> {{comment.comment}}
-        <br><br> {% endfor %}
+        {% for comment in comments %} 
+        <div class="row">
+            <p>Comment Created: {{ comment.created }}</p>
+            <p>Comment Type: {{ comment.comment_type }}</p>
+            <p>Comment: {{ comment.comment }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+        <input type=button value="Back" onClick="javascript:history.go(-1);">
     </div>
 </div>
 
