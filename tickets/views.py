@@ -49,6 +49,7 @@ def view_comments(request, id):
     
     return render (request, "comments.html", {'comments': comments})
     
+    
 def new_comment(request, id):
     """
     A view that will return a new comment input form
@@ -62,3 +63,14 @@ def new_comment(request, id):
     form = CommentForm()
     
     return render(request, "new_comment.html", {'form':form})
+    
+
+def up_vote(request, id):
+
+    ticket = get_object_or_404(Ticket, pk=id)
+    ticket.up_vote += 1
+    ticket.save()
+    print("___________")
+    print(ticket.up_vote)
+    print("___________")
+    return redirect("/")

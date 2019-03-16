@@ -9,8 +9,7 @@
             <div class="row dashboard-subject">
                 <span>{{ ticket.subject }}</span>
             </div>
-            <a href="#" class="up-vote"><i class="fas fa-arrow-up"></i></a>
-            <br>
+            <a href="{% url 'up_vote' ticket.id %}" class="up-vote"><i class="fas fa-arrow-up"></i></a>
             <a href="{% url 'view_ticket' ticket.id  %}" class ="btn btn-default btn-dashboard">Open Ticket</a>
         </div>
 
