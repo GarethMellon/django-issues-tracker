@@ -21,7 +21,7 @@ body {
 }
 
 .dashboard-subject {
-    width: 67%;
+    width: 60%;
     display: inline-block;
     margin: 5px 5px 5px 5px;
     text-overflow: ellipsis;
@@ -30,7 +30,7 @@ body {
 }
 
 .up-vote {
-    font-size: xx-large;
+    font-size: x-large;
     margin: 5px 5px 5px 5px;
 }
 
