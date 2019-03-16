@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from tickets.models import Ticket
 from tickets.forms import TicketStagingForm, TicketForm
 
@@ -18,7 +19,24 @@ def staging_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     form = TicketStagingForm(instance = ticket)
     
-    return render(request, "staging-ticket.html", {'form': form})
+    return render(request, "staging-ticket.html", {'form': form, 'ticket': ticket})
+    
+def staging_accept(request, id):
+    
+    ticket = get_object_or_404(Ticket, pk=id)
+    ticket.accept = 1
+    ticket.save()
+    messages.success(request, "Ticket accepted for development")
+    return redirect("staging")
+    
+def staging_reject(request, id):
+    
+    ticket = get_object_or_404(Ticket, pk=id)
+    ticket.accept = 0
+    ticket.save()
+    messages.success(request, "Ticket rejected for development")
+    return redirect("staging")
+    
     
 def dev_area(request):
     """
