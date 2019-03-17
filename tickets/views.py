@@ -1,11 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 from issues_tracker.urls import url
 
-# Create your views here.
 
+""" helper function to save form data to be used in the views below """
+def save_form(request, form):
+    if form.is_valid:
+        form.save()
+        messages.success(request, "You're ticket has been saved!")
+
+# Create your views here.
 
 def view_ticket(request, id):
     """
@@ -13,34 +20,40 @@ def view_ticket(request, id):
     """
     if request.method == "POST":
         form = TicketForm(request.POST)
-        if form.is_valid:
-            form.save()
-            messages.success(request, "You're ticket has been saved!")
+        
+        if request.user.is_authenticated:
+            save_form(request, form)
             return redirect("/")
-        else:
-            return HttpResponse("_______we post______") ## placeholder code
+        elif request.user.is_anonymous:
+            ##placeholder for Stripe payment
+            save_form(request, form)
+            return redirect("/")
     else:
         ticket = get_object_or_404(Ticket, pk=id)
         form = TicketForm(instance=ticket)
-        
     return render(request, "ticket.html", {'form': form, 'id':ticket.id})
-    
 
 def new_ticket(request):
     """
     A view that will return a page with a new ticket input form
     """
-    if request.method=="POST":
+    if request.method == "POST":
         form = TicketForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+        if request.user.is_authenticated:
+            save_form(request, form)
+            return redirect("/")
+            
+        elif request.user.is_anonymous and form.data["ticket_type"]=="Feature":
+            print("Stripe payment required")
+            save_form(request, form)
+            return redirect("/")
+        else:
+            save_form(request, form)
+            return redirect("/")
             
     form = TicketForm() 
-    
     return render(request, "ticket.html", {'form': form})
     
-
 def view_comments(request, id):
     """
     A view that will return all current comments for a ticket
@@ -48,7 +61,6 @@ def view_comments(request, id):
     comments = Comment.objects.filter(ticket=id)
     
     return render (request, "comments.html", {'comments': comments})
-    
     
 def new_comment(request, id):
     """
@@ -64,11 +76,16 @@ def new_comment(request, id):
     
     return render(request, "new_comment.html", {'form':form})
     
-
 def up_vote(request, id):
-
-    ticket = get_object_or_404(Ticket, pk=id)
-    ticket.up_vote += 1
-    ticket.save()
-    
-    return redirect("/")
+    if request.user.is_authenticated:
+        ticket = get_object_or_404(Ticket, pk=id)
+        ticket.up_vote += 1
+        ticket.save()
+        return redirect("/")
+            
+    elif request.user.is_anonymous:
+        print("Stripe payment required")
+        ticket = get_object_or_404(Ticket, pk=id)
+        ticket.up_vote += 1
+        ticket.save()
+        return redirect("/")
