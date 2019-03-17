@@ -53,9 +53,14 @@ body {
 /* staging board */
 
 form {
-    width: 50%;
+    width: 75%;
 }
 
 
-/* comments section */
+/* quck add form styles */
 
+.quick-add-form {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}

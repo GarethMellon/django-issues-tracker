@@ -40,7 +40,8 @@ def new_ticket(request):
     A view that will return a page with a new ticket input form
     """
     if request.method == "POST":
-        form = TicketForm(request.POST, request.FILES)
+        form = TicketForm(request.POST, request.FILES
+        )
         if request.user.is_authenticated:
             save_form(request, form)
             return redirect("/")

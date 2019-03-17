@@ -1,9 +1,21 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %}Login Page{% endblock %} {% block page_heading %}User login {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% load bootstrap_tags %}
+
+{% block page_title %}
+    Developer Login Page
+{% endblock %} 
+
+{% block page_heading %}
+    Developer Login 
+{% endblock %} 
+
+{% block content %}
 
 <div class="container">
     <div class="jumbotron">
         <form method="POST">
-            {% csrf_token %} {{ login_form | as_bootstrap }}
+            {% csrf_token %} 
+            {{ login_form | as_bootstrap }}
             <button type="submit" class="btn btn-default">Login</button>
             <button type=button value="Back" onClick="javascript:history.go(-1);" class="btn btn-default">Back</button>
         </form>
