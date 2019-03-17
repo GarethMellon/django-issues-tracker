@@ -2,15 +2,16 @@
 
 <div class="container">
     <div class="jumbotron">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} {{ form|as_bootstrap }}
 
             <input type="submit" value="Submit" name="Submit" />
             <input type=button value="Back" onClick="javascript:history.go(-1);">
         </form>
-        {% if id %}
-        <a href="{% url 'view_comments' id %}" class="btn btn-default">View Comments</a>
-        <a href="{% url 'new_comment' id %}" class="btn btn-default">Add Comment</a> 
+
+        {% if ticket.id %}
+        <a href="{% url 'view_comments' ticket.id %}" class="btn btn-default">View Comments</a>
+        <a href="{% url 'new_comment' ticket.id %}" class="btn btn-default">Add Comment</a> 
         {% endif %}
     </div>
 </div>

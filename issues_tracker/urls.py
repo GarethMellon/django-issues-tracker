@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from dashboard.views import dashboard_page
+
 from accounts import urls as accounts_urls
 from tickets import urls as tickets_urls
 from dev_area import urls as dev_area_urls
@@ -28,3 +31,6 @@ urlpatterns = [
     url(r'^development/', include(dev_area_urls)),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

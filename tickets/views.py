@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from django.core.files.storage import FileSystemStorage
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 from issues_tracker.urls import url
@@ -16,29 +17,30 @@ def save_form(request, form):
 
 def view_ticket(request, id):
     """
-    A view and edit that will return a page with a current ticket
+    A view and edit that will return a page with a current ticket. 
     """
+    ticket = get_object_or_404(Ticket, pk=id)
+
     if request.method == "POST":
-        form = TicketForm(request.POST)
-        
+        form = TicketForm(request.POST, request.FILES, instance=ticket)
         if request.user.is_authenticated:
             save_form(request, form)
             return redirect("/")
         elif request.user.is_anonymous:
-            ##placeholder for Stripe payment
+            ####placeholder for Stripe payment####
             save_form(request, form)
             return redirect("/")
     else:
-        ticket = get_object_or_404(Ticket, pk=id)
         form = TicketForm(instance=ticket)
-    return render(request, "ticket.html", {'form': form, 'id':ticket.id})
+        
+    return render(request, "ticket.html", {'form': form, 'ticket': ticket})
 
 def new_ticket(request):
     """
     A view that will return a page with a new ticket input form
     """
     if request.method == "POST":
-        form = TicketForm(request.POST)
+        form = TicketForm(request.POST, request.FILES)
         if request.user.is_authenticated:
             save_form(request, form)
             return redirect("/")
