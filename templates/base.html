@@ -42,7 +42,7 @@
                     <li><a href="{% url 'staging' %}">Ticket Staging Area</a></li>
                     <li><a href="{% url 'dev_area' %}">Development Area</a></li>
                     <li><a href="{% url 'profile' %}">Developer Profile</a></li>
-                    <li><a href="{% url 'new_ticket' %}">Add Ticket</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">Add Ticket</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'registration' %}">Developer Register</a></li>
@@ -68,6 +68,19 @@
         </div>
     </div>
     {% endif %}
+
+<form action="/charge" method="POST">
+    {% csrf_token %}
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key= '{{ key }}'
+    data-name="Stripe Payment"
+    data-description="Issue Tracker Payment"
+    data-amount="50">
+    data-currency="eur"
+  </script>
+</form>
 
     <!-- main content loads hwere-->
     <div class="main-content">

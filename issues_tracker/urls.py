@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from dashboard.views import dashboard_page
+from dashboard.views import dashboard_page, charge
 
 from accounts import urls as accounts_urls
 from tickets import urls as tickets_urls
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include(accounts_urls)),
     url(r'^tickets/', include(tickets_urls)),
     url(r'^development/', include(dev_area_urls)),
+    url('charge', charge, name='charge')
 
 ]
 

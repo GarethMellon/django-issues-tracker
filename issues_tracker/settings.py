@@ -139,3 +139,7 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/media/'
+
+# stripe keys
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET')
