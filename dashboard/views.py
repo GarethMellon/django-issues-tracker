@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from tickets.models import Ticket
-from tickets.forms import TicketUserForm
+from tickets.forms import TicketUserForm, TicketForm
+from django.contrib import messages
 from tickets.views import save_form
 from django.conf import settings
 import stripe
@@ -39,4 +40,10 @@ def charge (request):
             description='IssueTrackerCharge',
             source=request.POST['stripeToken']
             )
+            
+        form = TicketForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "You're ticket has been saved!")
+            
     return redirect('/')

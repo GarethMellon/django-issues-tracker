@@ -69,7 +69,7 @@
     </div>
     {% endif %}
 
-    <!-- Stripe charge form -->
+    <!-- Stripe charge form
     <form action="/charge" method="POST">
     {% csrf_token %}
         <script
@@ -81,7 +81,7 @@
             data-amount="50">
             data-currency="eur"
         </script>
-    </form>
+    </form> -->
 
     <!-- main content loads hwere-->
     <div class="main-content">
@@ -107,8 +107,12 @@
                         <form method="POST" enctype="multipart/form-data" class="quick-add-form">
                             {% csrf_token %} 
                             {{ ticketForm }}
+                            
+                            {% if user.is_authenticated %} <!--  if the user is not logged in we display a stripe pay button-->
                             <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
-                            <form action="/charge" method="POST" class="hidden">
+                            {% else %}
+                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
+                            <form action="/charge" method="POST" name="stripeForm">
                                 {% csrf_token %}
                                 <script
                                     src="https://checkout.stripe.com/checkout.js"
@@ -120,6 +124,7 @@
                                     data-currency="eur">
                                 </script>
                             </form>
+                            {% endif %}
                             
                         </form>
                     </div>
