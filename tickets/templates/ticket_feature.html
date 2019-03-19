@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% load bootstrap_tags %} 
+
+{% block page_title %} 
+    View Ticket 
+{% endblock %} 
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} 
+
+            {{ form|as_bootstrap }}
+
+            <form action="/charge" method="POST" name="stripeForm">
+                {% csrf_token %}
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key='{{ key }}' data-name="Stripe Payment" data-description="Issue Tracker Payment" data-amount="50" data-currency="eur">
+                </script>
+                
+                <input class="btn btn-default" type=button value="Back" onClick="javascript:history.go(-1);">
+            </form>
+        </form>
+
+        {% if ticket.id %}
+        <a href="{% url 'view_comments' ticket.id %}" class="btn btn-default">View Comments</a>
+        <a href="{% url 'new_comment' ticket.id %}" class="btn btn-default">Add Comment</a> {% endif %}
+    </div>
+</div>
+
+{% endblock %}

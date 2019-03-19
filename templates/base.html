@@ -1,5 +1,4 @@
-{% load staticfiles %} 
-{% load bootstrap_tags %}
+{% load staticfiles %} {% load bootstrap_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,13 +45,20 @@
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'registration' %}">Developer Register</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">Add Ticket</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Ticket <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'new_ticket' type='Bug' %}">Add Bug</a></li>
+                            <li><a href="{% url 'new_ticket' type='Feature' %}">Add Feature</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
-                </ul>
+                    </ul>
             </div>
         </div>
     </nav>
+
     {% if messages %}
     <div class="alert alert-success">
         <div class="messages">
@@ -64,7 +70,6 @@
     <div class="container info-bar">
         <div class="row">
             <p>Are you a developer? Log in <a href="{% url 'login' %}">HERE</a></p>
-            <!--<a href="{% url 'new_ticket' %}" class="btn btn-default">Add New Ticket</a>-->
         </div>
     </div>
     {% endif %}
@@ -106,26 +111,19 @@
                     <div class="jumbotron">
                         <form method="POST" enctype="multipart/form-data" class="quick-add-form">
                             {% csrf_token %} 
-                            {{ ticketForm }}
-                            
-                            {% if user.is_authenticated %} <!--  if the user is not logged in we display a stripe pay button-->
-                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
+                            {{ ticketForm }} 
+                            {% if user.is_authenticated %}
+                            <!--  if the user is not logged in we display a stripe pay button-->
+                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" /> 
                             {% else %}
                             <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
                             <form action="/charge" method="POST" name="stripeForm">
                                 {% csrf_token %}
-                                <script
-                                    src="https://checkout.stripe.com/checkout.js"
-                                    class="stripe-button"
-                                    data-key= '{{ key }}'
-                                    data-name="Stripe Payment"
-                                    data-description="Issue Tracker Payment"
-                                    data-amount="50"
-                                    data-currency="eur">
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key='{{ key }}' data-name="Stripe Payment" data-description="Issue Tracker Payment" data-amount="50" data-currency="eur">
                                 </script>
                             </form>
                             {% endif %}
-                            
+
                         </form>
                     </div>
                 </div>

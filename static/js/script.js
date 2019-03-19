@@ -5,7 +5,7 @@ $(document).ready(function() {
         $('#myInput').focus()
     })
 
-    $('.stripe-button-el').hide()
+    /*$('.stripe-button-el').hide()*/
 
     $('#id_ticket_type').click(function() {
         if ($(this).val() === "Feature") {

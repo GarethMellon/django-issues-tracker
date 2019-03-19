@@ -1,17 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate
-from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+from .helpers import save_form
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 from issues_tracker.urls import url
-
-
-""" helper function to save form data to be used in the views below """
-def save_form(request, form):
-    if form.is_valid:
-        form.save()
-        messages.success(request, "You're ticket has been saved!")
 
 # Create your views here.
 
@@ -35,27 +29,25 @@ def view_ticket(request, id):
         
     return render(request, "ticket.html", {'form': form, 'ticket': ticket})
 
-def new_ticket(request):
+def new_ticket(request, type):
     """
     A view that will return a page with a new ticket input form
     """
     if request.method == "POST":
-        form = TicketForm(request.POST, request.FILES
-        )
-        if request.user.is_authenticated:
-            save_form(request, form)
-            return redirect("/")
-            
-        elif request.user.is_anonymous and form.data["ticket_type"]=="Feature":
-            print("Stripe payment required")
-            save_form(request, form)
-            return redirect("/")
-        else:
-            save_form(request, form)
-            return redirect("/")
-            
-    form = TicketForm() 
-    return render(request, "ticket.html", {'form': form})
+        form = TicketForm(request.POST, request.FILES)
+        save_form(request, form)
+        return redirect('/')
+    
+    if type =='Dev':
+        form = TicketForm()
+    else:
+        form = TicketForm(initial={'ticket_type': type})
+    
+    if type == 'Feature':
+        key = settings.STRIPE_PUBLISHABLE_KEY
+        return render(request, "ticket_feature.html", {'form': form, 'key': key})
+    else:
+        return render(request, "ticket.html", {'form': form})
     
 def view_comments(request, id):
     """

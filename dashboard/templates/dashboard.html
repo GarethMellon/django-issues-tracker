@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% block page_title %} Dashboard {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% block page_title %} 
+    Dashboard
+{% endblock %} 
+{% block content %}
 <div class="row">
 
     <div class="container jumbotron">
@@ -8,11 +12,10 @@
             <li role="presentation"><a href="#features" aria-controls="profile" role="tab" data-toggle="tab">Features</a></li>
         </ul>
 
-
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="bugs">
-                {% for ticket in tickets %} {% if ticket.ticket_type == 'Bug' %}
-
+                {% for ticket in tickets %} 
+                {% if ticket.ticket_type == 'Bug' %}
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                     <div class="row dashboard-subject">
                         <span>{{ ticket.subject }}</span>
@@ -20,12 +23,12 @@
                     <a href="{% url 'up_vote' ticket.id %}" class="up-vote">{{ ticket.up_vote }}<i class="fas fa-arrow-up"></i></a>
                     <a href="{% url 'view_ticket' ticket.id  %}" class="btn btn-default btn-dashboard">Open Ticket</a>
                 </div>
-                {% endif %} {% endfor %}
+                {% endif %} 
+                {% endfor %}
             </div>
             <div role="tabpanel" class="tab-pane" id="features">
                 {% for ticket in tickets %} 
                 {% if ticket.ticket_type == 'Feature' %}
-
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                     <div class="row dashboard-subject">
                         <span>{{ ticket.subject }}</span>
@@ -37,20 +40,7 @@
                 {% endfor %}
             </div>
         </div>
-
-
-        <!-- {% for ticket in tickets %}
-
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
-            <div class="row dashboard-subject">
-                <span>{{ ticket.subject }}</span>
-            </div>
-            <a href="{% url 'up_vote' ticket.id %}" class="up-vote">{{ ticket.up_vote }}<i class="fas fa-arrow-up"></i></a>
-            <a href="{% url 'view_ticket' ticket.id  %}" class="btn btn-default btn-dashboard">Open Ticket</a>
-        </div>
-
-        {% endfor %}  -->
-
+        
     </div>
 
 </div>
