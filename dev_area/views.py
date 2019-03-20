@@ -33,10 +33,10 @@ def staging_reject(request, id):
     
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.accept = 0
+    ticket.status = "Reject"
     ticket.save()
     messages.success(request, "Ticket rejected for development")
     return redirect("staging")
-    
     
 def dev_area(request):
     """

@@ -19,7 +19,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="bugs">
                         {% for ticket in tickets %} 
-                        {% if ticket.accept == 0 and ticket.ticket_type == 'Bug' %}
+                        {% if ticket.accept == 0 and ticket.ticket_type == 'Bug' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                             <div class="row dashboard-subject">
                                 <span>{{ ticket.subject }}</span>
@@ -33,7 +33,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="features">
                         {% for ticket in tickets %} 
-                        {% if ticket.accept == 0 and ticket.ticket_type == 'Feature' %}
+                        {% if ticket.accept == 0 and ticket.ticket_type == 'Feature' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                             <div class="row dashboard-subject">
                                 <span>{{ ticket.subject }}</span>
