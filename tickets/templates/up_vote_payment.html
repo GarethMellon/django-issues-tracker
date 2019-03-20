@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+
+{% block page_title %} 
+    Payment for Feature 
+{% endblock %} 
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="payment">
+            <p>In order to up vote this feature ticket you will be charge a fee of 50 cent.</p>
+        </div>
+        <form action="/charge/{{ticket.id}}/{{up_vote_flag}}" method="POST" name="stripeForm">
+            {% csrf_token %}
+
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key='{{ key }}' data-name="Stripe Payment" data-description="Issue Tracker Payment" data-amount="50" data-currency="eur">
+            </script>
+
+            <input class="btn btn-default" type=button value="Back" onClick="javascript:history.go(-1);">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

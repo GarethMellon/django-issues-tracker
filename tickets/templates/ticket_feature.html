@@ -13,7 +13,7 @@
 
             {{ form|as_bootstrap }}
 
-            <form action="/charge" method="POST" name="stripeForm">
+            <form action="/charge/0/False" method="POST" name="stripeForm">
                 {% csrf_token %}
                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key='{{ key }}' data-name="Stripe Payment" data-description="Issue Tracker Payment" data-amount="50" data-currency="eur">
                 </script>

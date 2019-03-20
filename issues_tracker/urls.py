@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include(accounts_urls)),
     url(r'^tickets/', include(tickets_urls)),
     url(r'^development/', include(dev_area_urls)),
-    url('charge', charge, name='charge')
+    url('charge/(?P<id>\d+)/(?P<up_vote_flag>[\w.@+-]+)', charge, name='charge')
 
 ]
 

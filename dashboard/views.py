@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from tickets.models import Ticket
 from tickets.forms import TicketUserForm, TicketForm
+from tickets.helpers import charge
 from django.contrib import messages
 from tickets.views import save_form
 from django.conf import settings
@@ -29,21 +30,3 @@ def dashboard_page(request):
             
     ticketForm = TicketUserForm() 
     return render(request, 'dashboard.html', {'tickets': tickets, 'ticketForm': ticketForm, 'key': key})
-
-
-def charge (request):
-    if request.method == 'POST':
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        charge = stripe.Charge.create(
-            amount=50,
-            currency='eur',
-            description='IssueTrackerCharge',
-            source=request.POST['stripeToken']
-            )
-            
-        form = TicketForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "You're ticket has been saved!")
-            
-    return redirect('/')

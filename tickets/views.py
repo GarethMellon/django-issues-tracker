@@ -5,6 +5,7 @@ from django.conf import settings
 from .helpers import save_form
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
+from .helpers import up_vote_ticket
 from issues_tracker.urls import url
 
 # Create your views here.
@@ -72,15 +73,15 @@ def new_comment(request, id):
     return render(request, "new_comment.html", {'form':form})
     
 def up_vote(request, id):
+    ticket = get_object_or_404(Ticket, pk=id)
+
     if request.user.is_authenticated:
-        ticket = get_object_or_404(Ticket, pk=id)
-        ticket.up_vote += 1
-        ticket.save()
+        up_vote_ticket(ticket)
         return redirect("/")
-            
-    elif request.user.is_anonymous:
-        print("Stripe payment required")
-        ticket = get_object_or_404(Ticket, pk=id)
-        ticket.up_vote += 1
-        ticket.save()
+    elif request.user.is_anonymous and ticket.ticket_type=="Feature":
+        key = settings.STRIPE_PUBLISHABLE_KEY
+        up_vote_flag = True
+        return render(request, "up_vote_payment.html", {'id': id,'key': key, 'up_vote_flag': up_vote_flag, 'ticket': ticket})
+    else:
+        up_vote_ticket(ticket)
         return redirect("/")
