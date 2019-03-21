@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpR
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.conf import settings
+from django.core.mail import send_mail
 from .helpers import save_form
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
@@ -20,6 +21,16 @@ def view_ticket(request, id):
         form = TicketForm(request.POST, request.FILES, instance=ticket)
         if request.user.is_authenticated:
             save_form(request, form)
+            
+            subject = 'Thank you for registering to our site'
+            message = ' it  means a world to us '
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['garethmellon@gmail.com','issue.tracker.django.project@gmail.com']
+            send_mail( subject, message, email_from, recipient_list )
+            print("------")
+            print("Send Email")
+            print("------")
+        
             return redirect("/")
         elif request.user.is_anonymous:
             ####placeholder for Stripe payment####
@@ -37,6 +48,16 @@ def new_ticket(request, type):
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES)
         save_form(request, form)
+        
+        subject = 'Thank you for registering to our site'
+        message = ' it  means a world to us '
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['garethmellon@gmail.com',]
+        send_mail( subject, message, email_from, recipient_list )
+        print("------")
+        print("Send Email")
+        print("------")
+        
         return redirect('/')
     
     if type =='Dev':

@@ -143,3 +143,11 @@ MEDIA_URL = '/media/'
 # stripe keys
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET')
+
+#Email settings
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'issue.tracker.django.project@gmail.com'
+EMAIL_HOST_PASSWORD = 'password100!'
