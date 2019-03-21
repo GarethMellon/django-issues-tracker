@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpR
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.conf import settings
-from django.core.mail import send_mail
-from .helpers import save_form
+
+from .helpers import save_form, send_edit_ticket_email, send_new_ticket_email
+
 from .forms import TicketForm, CommentForm
 from .models import Ticket, Comment
 from .helpers import up_vote_ticket
@@ -20,21 +21,10 @@ def view_ticket(request, id):
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES, instance=ticket)
         if request.user.is_authenticated:
-            save_form(request, form)
-            
-            subject = 'Thank you for registering to our site'
-            message = ' it  means a world to us '
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = ['garethmellon@gmail.com','issue.tracker.django.project@gmail.com']
-            send_mail( subject, message, email_from, recipient_list )
-            print("------")
-            print("Send Email")
-            print("------")
-        
+            save_form(request, form, ticket, 'edit')
             return redirect("/")
         elif request.user.is_anonymous:
-            ####placeholder for Stripe payment####
-            save_form(request, form)
+            save_form(request, form, ticket, 'edit')
             return redirect("/")
     else:
         form = TicketForm(instance=ticket)
@@ -47,20 +37,11 @@ def new_ticket(request, type):
     """
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES)
-        save_form(request, form)
-        
-        subject = 'Thank you for registering to our site'
-        message = ' it  means a world to us '
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['garethmellon@gmail.com',]
-        send_mail( subject, message, email_from, recipient_list )
-        print("------")
-        print("Send Email")
-        print("------")
-        
+        ticket = Ticket(request.POST)
+        save_form(request, form, ticket, 'new')
         return redirect('/')
     
-    if type =='Dev':
+    if type =='Dev': #### We need to preep a form depending of we are a Dev User. or a User with a Bug or Feature.
         form = TicketForm()
     else:
         form = TicketForm(initial={'ticket_type': type})
@@ -97,12 +78,12 @@ def up_vote(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
 
     if request.user.is_authenticated:
-        up_vote_ticket(ticket)
+        up_vote_ticket(request, ticket)
         return redirect("/")
     elif request.user.is_anonymous and ticket.ticket_type=="Feature":
         key = settings.STRIPE_PUBLISHABLE_KEY
         up_vote_flag = True
         return render(request, "up_vote_payment.html", {'id': id,'key': key, 'up_vote_flag': up_vote_flag, 'ticket': ticket})
     else:
-        up_vote_ticket(ticket)
+        up_vote_ticket(request, ticket)
         return redirect("/")
