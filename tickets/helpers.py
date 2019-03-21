@@ -10,15 +10,14 @@ from tickets.forms import TicketForm
 def save_form(request, form, ticket, email_type):
     if form.is_valid:
         form.save()
-        
-        print(ticket)
-        
         if email_type =='edit':
             send_edit_ticket_email(request, ticket)
         elif email_type =='new':
             send_new_ticket_email(request, ticket)
         elif email_type =='charge':
             send_charge_email(request, ticket)
+        elif email_type =='comment':
+            send_comment_email(request, ticket)
 
 """ Fucntion to up vote a ticket """
 def up_vote_ticket(request ,ticket):
@@ -77,9 +76,6 @@ def send_charge_email(request, ticket):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [ticket.email, 'issue.tracker.django.project@gmail.com']
     send_mail( subject, message, email_from, recipient_list )
-    print("-----")
-    print("Charge Email Sent")
-    print("-----")
     
 def send_upvote_email(request, ticket):
     subject = "You have upvoted a ticket!"
@@ -87,4 +83,10 @@ def send_upvote_email(request, ticket):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [ticket.email, 'issue.tracker.django.project@gmail.com']
     send_mail( subject, message, email_from, recipient_list )
-    
+
+def send_comment_email(request, ticket):
+    subject = "You comment has been added!!"
+    message = 'Thank you commenting on a ticket.  The development team have been notified'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [ticket.email, 'issue.tracker.django.project@gmail.com']
+    send_mail( subject, message, email_from, recipient_list )

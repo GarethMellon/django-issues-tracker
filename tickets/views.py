@@ -67,7 +67,11 @@ def new_comment(request, id):
     if request.method=="POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
+            ticket = get_object_or_404(Ticket, pk=id)
+            print("_____")
+            print(ticket)
+            print("_____")
+            save_form(request, form, ticket, "comment")
             return redirect('view_ticket', id=id)
     
     form = CommentForm()
