@@ -64,17 +64,19 @@ def new_comment(request, id):
     """
     A view that will return a new comment input form
     """
+    ticket = get_object_or_404(Ticket, pk=id)
+    
     if request.method=="POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            ticket = get_object_or_404(Ticket, pk=id)
-            print("_____")
-            print(ticket)
-            print("_____")
             save_form(request, form, ticket, "comment")
             return redirect('view_ticket', id=id)
     
-    form = CommentForm()
+    if request.user.is_authenticated:
+        form = CommentForm(initial={'comment_type': 'Dev', 'ticket': ticket.id})
+    elif request.user.is_anonymous:
+        form = CommentForm(initial={'comment_type': 'User', 'ticket': ticket.id})
+        
     
     return render(request, "new_comment.html", {'form':form})
     
