@@ -29,18 +29,13 @@ def login(request):
             if user:
                 auth.login(user = user, request=request)
                 messages.success(request, "you have successfully logged in!")
-                return redirect(reverse('profile'))
+                return redirect(reverse('dashboard_page'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
     else:
         login_form = UserLogin()
     return render(request, "login.html", {'login_form': login_form})
-    
-@login_required
-def profile(request):
-    """ a view that displayes a profile page of a logged in user """
-    return render (request, "profile.html")
-    
+
 def registration(request):
     """ render the registration page"""
     if request.user.is_authenticated():

@@ -40,7 +40,6 @@
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'staging' %}">Ticket Staging Area</a></li>
                     <li><a href="{% url 'dev_area' %}">Development Area</a></li>
-                    <li><a href="{% url 'profile' %}">Developer Profile</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#myModal">Add Ticket</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
@@ -54,7 +53,7 @@
                     </li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
-                    </ul>
+                </ul>
             </div>
         </div>
     </nav>
@@ -66,7 +65,8 @@
         </div>
     </div>
     {% endif %} {% if user.is_anonymous %}
-    <!-- info bar -->
+    
+    <!-- info bar for dev log in -->
     <div class="container info-bar">
         <div class="row">
             <p>Are you a developer? Log in <a href="{% url 'login' %}">HERE</a></p>
@@ -79,11 +79,14 @@
         {% block content %} {% endblock %}
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>Issue Tracker - 2019</p>
         </div>
     </footer>
+
+
 
     <!-- new ticket modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,14 +99,9 @@
                 <div class="modal-body">
                     <div class="jumbotron">
                         <form method="POST" enctype="multipart/form-data" class="quick-add-form">
-                            {% csrf_token %} 
-                            
-
-                            {{ ticketForm.as_p }} 
-
-                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" /> 
-                          
-                      </form>
+                            {% csrf_token %} {{ ticketForm.as_p }}
+                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
+                        </form>
                     </div>
                 </div>
             </div>
