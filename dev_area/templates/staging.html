@@ -1,9 +1,4 @@
-{% extends 'base.html' %} 
-{% load bootstrap_tags %} 
-{% block page_title %} 
-    Ticket Staging Board 
-{% endblock %} 
-{% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Ticket Staging Board {% endblock %} {% block content %}
 
 <div class="container">
     <div class="jumbotron">
@@ -18,8 +13,7 @@
 
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="bugs">
-                        {% for ticket in tickets %} 
-                        {% if ticket.accept == 0 and ticket.ticket_type == 'Bug' and ticket.status != "Reject" %}
+                        {% for ticket in tickets %} {% if ticket.accept == 0 and ticket.ticket_type == 'Bug' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                             <div class="row dashboard-subject">
                                 <span>{{ ticket.subject }}</span>
@@ -28,12 +22,10 @@
                                 <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-default btn-staging">View Ticket</a>
                             </div>
                         </div>
-                        {% endif %}
-                        {% endfor %}
+                        {% endif %} {% endfor %}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="features">
-                        {% for ticket in tickets %} 
-                        {% if ticket.accept == 0 and ticket.ticket_type == 'Feature' and ticket.status != "Reject" %}
+                        {% for ticket in tickets %} {% if ticket.accept == 0 and ticket.ticket_type == 'Feature' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
                             <div class="row dashboard-subject">
                                 <span>{{ ticket.subject }}</span>
@@ -42,8 +34,7 @@
                                 <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-default btn-staging">View Ticket</a>
                             </div>
                         </div>
-                        {% endif %} 
-                        {% endfor %}
+                        {% endif %} {% endfor %}
                     </div>
                 </div>
             </div>
