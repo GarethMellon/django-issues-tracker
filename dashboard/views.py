@@ -13,20 +13,12 @@ import stripe
 def dashboard_page(request):
     key = settings.STRIPE_PUBLISHABLE_KEY
     tickets = Ticket.objects.all()
+    ticket = Ticket(request.POST)
     
     if request.method == "POST":
         form = TicketUserForm(request.POST, request.FILES)
-        if request.user.is_authenticated:
-            save_form(request, form)
-            return redirect("/")
-            
-        elif request.user.is_anonymous and form.data["ticket_type"]=="Feature":
-            print("Stripe payment required")
-            save_form(request, form)
-            return redirect("/")
-        else:
-            save_form(request, form)
-            return redirect("/")
-            
+        save_form(request, form, ticket, 'new')
+        return redirect("/")
+
     ticketForm = TicketUserForm() 
     return render(request, 'dashboard.html', {'tickets': tickets, 'ticketForm': ticketForm, 'key': key})

@@ -74,20 +74,6 @@
     </div>
     {% endif %}
 
-    <!-- Stripe charge form
-    <form action="/charge" method="POST">
-    {% csrf_token %}
-        <script
-            src="https://checkout.stripe.com/checkout.js"
-            class="stripe-button"
-            data-key= '{{ key }}'
-            data-name="Stripe Payment"
-            data-description="Issue Tracker Payment"
-            data-amount="50">
-            data-currency="eur"
-        </script>
-    </form> -->
-
     <!-- main content loads hwere-->
     <div class="main-content">
         {% block content %} {% endblock %}
@@ -111,20 +97,13 @@
                     <div class="jumbotron">
                         <form method="POST" enctype="multipart/form-data" class="quick-add-form">
                             {% csrf_token %} 
-                            {{ ticketForm }} 
-                            {% if user.is_authenticated %}
-                            <!--  if the user is not logged in we display a stripe pay button-->
-                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" /> 
-                            {% else %}
-                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
-                            <form action="/charge" method="POST" name="stripeForm">
-                                {% csrf_token %}
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key='{{ key }}' data-name="Stripe Payment" data-description="Issue Tracker Payment" data-amount="50" data-currency="eur">
-                                </script>
-                            </form>
-                            {% endif %}
+                            
 
-                        </form>
+                            {{ ticketForm.as_p }} 
+
+                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" /> 
+                          
+                      </form>
                     </div>
                 </div>
             </div>
