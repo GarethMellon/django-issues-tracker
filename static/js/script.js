@@ -5,21 +5,10 @@ $(document).ready(function() {
         $('#myInput').focus()
     })
 
-    /*
-    $('.stripe-button-el').hide()
-
-    $('#id_ticket_type').click(function() {
-        if ($(this).val() === "Feature") {
-            $(this).siblings('.btn-default').hide()
-            $(this).siblings('.stripe-button-el').show()
-            console.log("Stripe button display")
-        }
-        else if ($(this).val() === "Bug") {
-            $(this).siblings('.btn-default').show()
-            $(this).siblings('.stripe-button-el').hide()
-            console.log("Stripe button removed")
-        };
-    });
-    */
-
+    if ($('.container.info-bar').length >0) {
+        $('#div_id_ticket_type').hide()
+        $('#div_id_ticket').hide()
+        $('#div_id_comment_type').hide()
+        console.log("Hide Ticket Type")
+    };
 });
