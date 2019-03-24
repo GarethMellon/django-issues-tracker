@@ -1,1 +1,1 @@
-web: gunicorn issues_tracker.wsgi.application
+web: gunicorn issues_tracker.wsgi
