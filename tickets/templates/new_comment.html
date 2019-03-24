@@ -13,8 +13,8 @@
         
             {% csrf_token %} {{ form|as_bootstrap }}
         
-            <input type="submit" value="Submit" />
-            <input type=button value="Back" onClick="javascript:history.go(-1);">
+            <input type="submit" value="Submit" class="btn btn-submit"/>
+            <input type=button class="btn btn-back" value="Back" onClick="javascript:history.go(-1);">
         </form>
     </div>
 </div>

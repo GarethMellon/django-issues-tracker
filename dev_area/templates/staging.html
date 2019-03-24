@@ -15,31 +15,35 @@
                     <div role="tabpanel" class="tab-pane active" id="bugs">
                         {% for ticket in tickets %} {% if ticket.accept == 0 and ticket.ticket_type == 'Bug' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
-                            <div class="row dashboard-subject">
+                            <div class="row dev-subject">
                                 <span>{{ ticket.subject }}</span>
                             </div>
                             <div class="row action-row">
-                                <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-default btn-staging">View Ticket</a>
+                                <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-info btn-staging">View Ticket</a>
                             </div>
                         </div>
-                        {% endif %} {% endfor %}
+                        {% endif %} 
+                        {% empty %}
+                        <p>You're bug ticket queue is empty</p>{% endfor %}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="features">
                         {% for ticket in tickets %} {% if ticket.accept == 0 and ticket.ticket_type == 'Feature' and ticket.status != "Reject" %}
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
-                            <div class="row dashboard-subject">
+                            <div class="row dev-subject">
                                 <span>{{ ticket.subject }}</span>
                             </div>
                             <div class="row action-row">
-                                <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-default btn-staging">View Ticket</a>
+                                <a href="{% url 'staging_ticket' ticket.id %}" class="btn btn-info btn-staging">View Ticket</a>
                             </div>
                         </div>
-                        {% endif %} {% endfor %}
+                        {% endif %} 
+                        {% empty %}
+                        <p>You're feature ticket queue is empty</p>{% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        <input type=button value="Back" class="btn btn-default" onClick="javascript:history.go(-1);">
+        <input class="btn btn-back" type=button value="Back" class="btn btn-back" onClick="javascript:history.go(-1);">
     </div>
 </div>
 

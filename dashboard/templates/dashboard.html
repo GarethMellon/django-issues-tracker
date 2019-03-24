@@ -8,35 +8,39 @@
     <div class="container jumbotron">
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#bugs" aria-controls="home" role="tab" data-toggle="tab">Bugs</a></li>
-            <li role="presentation"><a href="#features" aria-controls="profile" role="tab" data-toggle="tab">Features</a></li>
+            <li role="presentation" class="active"><a href="#bugs" class="btn btn-default" aria-controls="home" role="tab" data-toggle="tab">Bugs</a></li>
+            <li role="presentation"><a href="#features" class="btn btn-default" aria-controls="profile" role="tab" data-toggle="tab">Features</a></li>
         </ul>
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="bugs">
+            <div role="tabpanel" class="tab-pane active fade in" id="bugs">
                 {% for ticket in tickets %} 
                 {% if ticket.ticket_type == 'Bug' %}
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ticket">
                     <div class="row dashboard-subject">
                         <span>{{ ticket.subject }}</span>
                     </div>
                     <a href="{% url 'up_vote' ticket.id %}" class="up-vote">{{ ticket.up_vote }}<i class="fas fa-arrow-up"></i></a>
                     <a href="{% url 'view_ticket' ticket.id  %}" class="btn btn-default btn-dashboard">Open Ticket</a>
                 </div>
-                {% endif %} 
+                {% endif %}
+                {% empty %}
+                <p>Please Add a Bug to the Dashboard with the Add Ticket button</p>
                 {% endfor %}
             </div>
-            <div role="tabpanel" class="tab-pane" id="features">
+            <div role="tabpanel" class="tab-pane fade" id="features">
                 {% for ticket in tickets %} 
                 {% if ticket.ticket_type == 'Feature' %}
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ticket">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ticket">
                     <div class="row dashboard-subject">
                         <span>{{ ticket.subject }}</span>
                     </div>
                     <a href="{% url 'up_vote' ticket.id %}" class="up-vote">{{ ticket.up_vote }}<i class="fas fa-arrow-up"></i></a>
                     <a href="{% url 'view_ticket' ticket.id  %}" class="btn btn-default btn-dashboard">Open Ticket</a>
                 </div>
-                {% endif %} 
+                {% endif %}
+                {% empty %}
+                <p>Please Add a Feature to the Dashboard with the Add Ticket button</p>
                 {% endfor %}
             </div>
         </div>

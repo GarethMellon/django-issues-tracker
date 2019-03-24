@@ -7,13 +7,13 @@
                 <form>
                     {{ form|as_bootstrap }}
                 </form>
-                <div class="row action-row">
-                    <a href="{% url 'staging_accept' ticket.id %}" class="btn btn-success btn-staging" />Accept</a>
-                    <a href="{% url 'staging_reject' ticket.id %}" class="btn btn-danger btn-staging" />Reject</a>
+                <div class="row">
+                    <a href="{% url 'staging_accept' ticket.id %}" class="btn btn-success" />Accept</a>
+                    <a href="{% url 'staging_reject' ticket.id %}" class="btn btn-danger" />Reject</a>
                 </div>
             </div>
         </div>
-        <input type=button value="Back" onClick="javascript:history.go(-1);">
+        <input class="btn btn-back" type=button value="Back" onClick="javascript:history.go(-1);">
     </div>
 </div>
 

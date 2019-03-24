@@ -54,5 +54,5 @@ def dev_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     form = TicketForm(instance=ticket)
     
-    return render(request, "development-ticket.html", {'form': form})
+    return render(request, "development-ticket.html", {'form': form, 'ticket': ticket})
 

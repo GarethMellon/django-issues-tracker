@@ -5,9 +5,14 @@
             <div class="container jumbotron">
                 <form>
                     {{ form|as_bootstrap }}
-                    <input type="submit" name="Save" />
-                    <input type=button value="Back" onClick="javascript:history.go(-1);">
+                    <input class="btn btn-submit" type="submit" name="Save" />
+                    <input class="btn btn-back" type=button value="Back" onClick="javascript:history.go(-1);">
                 </form>
+
+                {% if ticket.id %}
+                    <a href="{% url 'view_comments' ticket.id %}" class="btn btn-default">View Comments</a>
+                    <a href="{% url 'new_comment' ticket.id %}" class="btn btn-default">Add Comment</a> 
+                {% endif %}
             </div>
         </div>
     </div>
