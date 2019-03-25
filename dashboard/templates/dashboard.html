@@ -6,7 +6,8 @@
 <div class="row">
 
     <div class="container jumbotron">
-
+        
+        <!-- tabbed panle for bug and features -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#bugs" class="btn btn-default" aria-controls="home" role="tab" data-toggle="tab">Bugs</a></li>
             <li role="presentation"><a href="#features" class="btn btn-default" aria-controls="profile" role="tab" data-toggle="tab">Features</a></li>
@@ -25,7 +26,7 @@
                 </div>
                 {% endif %}
                 {% empty %}
-                <p>Please Add a Bug to the Dashboard with the Add Ticket button</p>
+                    <p>Please add a Bug to the Dashboard with the Add Ticket button</p>
                 {% endfor %}
             </div>
             <div role="tabpanel" class="tab-pane fade" id="features">
@@ -40,7 +41,7 @@
                 </div>
                 {% endif %}
                 {% empty %}
-                <p>Please Add a Feature to the Dashboard with the Add Ticket button</p>
+                <p>Please add a Feature to the Dashboard with the Add Ticket button</p>
                 {% endfor %}
             </div>
         </div>

@@ -14,7 +14,7 @@ from issues_tracker.urls import url
 
 def view_ticket(request, id):
     """
-    A view and edit that will return a page with a current ticket. 
+    A view and edit that will return a page with a current ticket. We also handle saving edits to a ticket.
     """
     ticket = get_object_or_404(Ticket, pk=id)
 
@@ -33,7 +33,7 @@ def view_ticket(request, id):
 
 def new_ticket(request, type):
     """
-    A view that will return a page with a new ticket input form
+    A view that will return a page with a new ticket input form.  We also handle saving a new ticket.
     """
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES)
@@ -62,7 +62,7 @@ def view_comments(request, id):
     
 def new_comment(request, id):
     """
-    A view that will return a new comment input form
+    A view that will return a new comment input form.  We also handle saving a comment as well.
     """
     ticket = get_object_or_404(Ticket, pk=id)
     
@@ -81,6 +81,9 @@ def new_comment(request, id):
     return render(request, "new_comment.html", {'form':form})
     
 def up_vote(request, id):
+    """
+    up vote of tickets including handleing payment process for feature up votes as anonymous user
+    """
     ticket = get_object_or_404(Ticket, pk=id)
 
     if request.user.is_authenticated:

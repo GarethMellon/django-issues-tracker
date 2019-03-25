@@ -1,4 +1,6 @@
-{% load staticfiles %} {% load bootstrap_tags %}
+{% load staticfiles %} 
+
+{% load bootstrap_tags  %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +25,7 @@
 </head>
 
 <body>
-    <!-- Fixed navbar -->
+    <!-- Fixed navbar.  Note we are changing some links if the user is logged in or not -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -64,9 +66,10 @@
             {% for message in messages %} {{ message }} {% endfor %}
         </div>
     </div>
-    {% endif %} {% if user.is_anonymous %}
-
-    <!-- info bar for dev log in -->
+    {% endif %} 
+    
+    <!-- info bar for dev log in flavor text -->
+    {% if user.is_anonymous %}
     <div class="container info-bar">
         <div class="row">
             <p>Are you a developer? Log in <a href="{% url 'login' %}">HERE</a></p>
@@ -86,9 +89,8 @@
         </div>
     </footer>
 
-
-
     <!-- new ticket modal -->
+    {% if user.is_authenticated %}
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -99,14 +101,16 @@
                 <div class="modal-body">
                     <div class="jumbotron">
                         <form method="POST" enctype="multipart/form-data" class="quick-add-form">
-                            {% csrf_token %} {{ ticketForm.as_p }}
-                            <input type="submit" value="Submit" name="Submit" class="btn btn-default" />
+                            {% csrf_token %} 
+                            {{ ticketForm | as_bootstrap }}
+                            <input class="btn btn-submit" type="submit" value="Submit" name="Submit"/>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
 
 </body>
 

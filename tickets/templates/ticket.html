@@ -1,20 +1,29 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} View Ticket {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+{% load bootstrap_tags %} 
+
+{% block page_title %} 
+    View Ticket 
+{% endblock %} 
+
+{% block content %}
 
 <div class="container">
     <div class="jumbotron">
         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %} {{ form|as_bootstrap }}
-
+            {% csrf_token %} 
+            
+            {{ form | as_bootstrap }}
+            
             <input class="btn btn-submit" type="submit" value="Submit" name="Submit"/>
             <input class="btn btn-back" type=button value="Back" onClick="javascript:history.go(-1);">
         </form>
 
         {% if ticket.id %}
-        <a href="{% url 'view_comments' ticket.id %}" class="btn btn-default">View Comments</a>
-        <a href="{% url 'new_comment' ticket.id %}" class="btn btn-default">Add Comment</a> 
+            <a href="{% url 'view_comments' ticket.id %}" class="btn btn-default">View Comments</a>
+            <a href="{% url 'new_comment' ticket.id %}" class="btn btn-default">Add Comment</a> 
         {% endif %}
     </div>
 </div>
-
 
 {% endblock %}
