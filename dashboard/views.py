@@ -11,7 +11,10 @@ import stripe
 # Create your views here.
 
 def dashboard_page(request):
+    """
+    Main dashboard view
+    """
     key = settings.STRIPE_PUBLISHABLE_KEY
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
 
     return render(request, 'dashboard.html', {'tickets': tickets, 'key': key})

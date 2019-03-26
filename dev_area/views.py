@@ -9,7 +9,7 @@ def staging_area(request):
     """
     A view that will return all tickets that needs to be verified before dev work starts
     """
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
     ticketForm = TicketForm()
     return render(request, "staging.html", {'tickets': tickets, 'ticketForm': TicketForm})
     
@@ -43,7 +43,7 @@ def dev_area(request):
     """
     A view that will return all tickets that needs to be verified before dev work starts
     """
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
     ticketForm = TicketForm()
     return render(request, "development.html", {'tickets': tickets, 'ticketForm': ticketForm})
 
