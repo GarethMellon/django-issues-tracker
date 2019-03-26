@@ -1,6 +1,6 @@
 {% load staticfiles %} 
 
-{% load bootstrap_tags  %}
+{% load bootstrap  %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-option"><a href="{% url 'staging' %}">Ticket Staging Area</a></li>
                     <li class="nav-option"><a href="{% url 'dev_area' %}">Development Area</a></li>
-                    <li class="nav-option"><a href="#" data-toggle="modal" data-target="#myModal">Add Ticket</a></li>
+                    <li class="nav-option"><a class="nav-link" href="{% url 'new_ticket' type='Dev' %}">Add Ticket</a></li>
                     <li class="nav-option"><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'registration' %}">Developer Register</a></li>
@@ -88,29 +88,6 @@
             <p>Issue Tracker - 2019</p>
         </div>
     </footer>
-
-    <!-- new ticket modal -->
-    {% if user.is_authenticated %}
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Ticket</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="jumbotron">
-                        <form method="POST" enctype="multipart/form-data" class="quick-add-form">
-                            {% csrf_token %} 
-                            {{ ticketForm | as_bootstrap }}
-                            <input class="btn btn-submit" type="submit" value="Submit" name="Submit"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 
 </body>
 

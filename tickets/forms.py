@@ -10,11 +10,6 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ('id','ticket_type','email','priority', 'upload_files','subject', 'description')
         
-class TicketUserForm(forms.ModelForm):
-    class Meta:
-        model = Ticket
-        fields = ('id','ticket_type', 'upload_files','subject', 'description')
-        
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

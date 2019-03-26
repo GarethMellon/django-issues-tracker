@@ -41,7 +41,7 @@ def new_ticket(request, type):
         save_form(request, form, ticket, 'new')
         return redirect('/')
     
-    if type =='Dev': #### We need to preep a form depending of we are a Dev User. or a User with a Bug or Feature.
+    if type =='Dev': #### We need to prep a form depending of we are a Dev or a User, with a Bug or Feature.
         form = TicketForm()
     else:
         form = TicketForm(initial={'ticket_type': type})
