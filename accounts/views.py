@@ -19,7 +19,7 @@ def logout(request):
 def login(request):
     """return a log in page"""
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('dashboard_page'))
     if request.method == "POST":
         login_form = UserLogin(request.POST)
         
@@ -53,7 +53,7 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have seccessfully registered.")
-                return redirect(reverse('login'))
+                return redirect(reverse('dashboard_page'))
             else:
                 messages.error(request, "Unable to register your account at this time.")
             

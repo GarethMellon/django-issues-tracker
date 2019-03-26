@@ -7,6 +7,12 @@
 
     <div class="container jumbotron">
         
+        {% if user.is_authenticated %}
+        <div class="row alert alert-success">
+            <p>You are logged in as: {{user.username}}</p>
+        </div>
+        {% endif %}
+        
         <!-- tabbed panle for bug and features -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#bugs" class="btn btn-default" aria-controls="home" role="tab" data-toggle="tab">Bugs</a></li>
