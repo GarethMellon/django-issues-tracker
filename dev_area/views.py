@@ -11,7 +11,10 @@ def staging_area(request):
     """
     tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
     ticketForm = TicketForm()
-    return render(request, "staging.html", {'tickets': tickets, 'ticketForm': TicketForm})
+    count_bug = Ticket.objects.filter(ticket_type__contains='Bug', accept__contains="0").count()
+    count_feature = Ticket.objects.filter(ticket_type__contains='Feature', accept__contains="0").count()
+    
+    return render(request, "staging.html", {'tickets': tickets, 'ticketForm': TicketForm, 'count_bug': count_bug, 'count_feature': count_feature})
     
 def staging_ticket(request, id):
     """
@@ -45,7 +48,10 @@ def dev_area(request):
     """
     tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
     ticketForm = TicketForm()
-    return render(request, "development.html", {'tickets': tickets, 'ticketForm': ticketForm})
+    count_bug = Ticket.objects.filter(ticket_type__contains='Bug', accept__contains="1").count()
+    count_feature = Ticket.objects.filter(ticket_type__contains='Feature', accept__contains="1").count()
+    
+    return render(request, "development.html", {'tickets': tickets, 'ticketForm': ticketForm, 'count_bug': count_bug, 'count_feature': count_feature})
 
 def dev_ticket(request, id):
     """

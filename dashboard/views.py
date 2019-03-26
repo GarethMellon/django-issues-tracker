@@ -16,5 +16,7 @@ def dashboard_page(request):
     """
     key = settings.STRIPE_PUBLISHABLE_KEY
     tickets = Ticket.objects.all().order_by('up_vote', 'created').reverse()
+    count_bug = Ticket.objects.filter(ticket_type__contains='Bug').count()
+    count_feature = Ticket.objects.filter(ticket_type__contains='Feature').count()
 
-    return render(request, 'dashboard.html', {'tickets': tickets, 'key': key})
+    return render(request, 'dashboard.html', {'tickets': tickets, 'key': key, 'count_bug': count_bug, 'count_feature': count_feature})

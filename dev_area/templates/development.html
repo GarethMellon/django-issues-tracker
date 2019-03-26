@@ -6,9 +6,10 @@
             <div class="container jumbotron">
                 <p>The current list of Bugs and Features that need action are below.</p>
                 <hr>
+                <!-- main panel with all bugs and features-->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#bugs" aria-controls="home" role="tab" data-toggle="tab">Bugs</a></li>
-                    <li role="presentation"><a href="#features" aria-controls="profile" role="tab" data-toggle="tab">Features</a></li>
+                    <li role="presentation" class="active"><a href="#bugs" class="btn btn-default" aria-controls="home" role="tab" data-toggle="tab">Bugs {{ count_bug }}</a></li>
+                    <li role="presentation"><a href="#features" class="btn btn-default" aria-controls="profile" role="tab" data-toggle="tab">Features {{ count_feature }}</a></li>
                 </ul>
 
                 <div class="tab-content">
