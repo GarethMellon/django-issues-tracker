@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'dashboard',
     'tickets',
     'dev_area',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -145,14 +146,30 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Message Store
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-
 # setup for file upload
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/media/'
+
+#set S3 as the place to store your files.
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+
+AWS_QUERYSTRING_AUTH = False 
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2399 20:00:00 GTM',
+    'CacheControl': 'max-age=94562000'
+}
+
+# Message Store
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # stripe keys
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE')
