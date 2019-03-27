@@ -9,17 +9,21 @@ from tickets.forms import TicketForm
 """ helper function to save form data to be used in the views below """
 def save_form(request, form, ticket, email_type):
     if form.is_valid:
-        form.save()
-        if email_type =='edit':
-            send_edit_ticket_email(request, ticket)
-        elif email_type =='new':
-            send_new_ticket_email(request, ticket)
-        elif email_type =='charge':
-            send_charge_email(request, ticket)
-        elif email_type =='comment':
-            send_comment_email(request, ticket)
+        try:
+            form.save()
+            if email_type =='edit':
+                send_edit_ticket_email(request, ticket)
+            elif email_type =='new':
+                send_new_ticket_email(request, ticket)
+            elif email_type =='charge':
+                send_charge_email(request, ticket)
+            elif email_type =='comment':
+                send_comment_email(request, ticket)
+        except:
+            messages.error(request, "There was an error submitting you're request.  Please contact support")
+            return redirect('/')
 
-""" Fucntion to up vote a ticket """
+""" Function to up vote a ticket """
 def up_vote_ticket(request ,ticket):
     ticket.up_vote += 1
     ticket.save()
