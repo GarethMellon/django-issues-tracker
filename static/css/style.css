@@ -164,6 +164,10 @@ footer,
     color: #FDFFFC;
 }
 
+btn-info{
+    background-color: #04519b;
+    background-image: linear-gradient(#04519b, #04519b 60%, #04519b);
+}
 /* comment */
 
 .view-comment {
