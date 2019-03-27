@@ -38,6 +38,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
+                    <li class="nav-option"><a href="{% url 'complaints' %}">Complaints</a></li>
                     <li class="nav-option"><a href="{% url 'staging' %}">Ticket Staging Area</a></li>
                     <li class="nav-option"><a href="{% url 'dev_area' %}">Development Area</a></li>
                     <li class="nav-option"><a class="nav-link" href="{% url 'new_ticket' type='Dev' %}">Add Ticket</a></li>
@@ -85,10 +86,18 @@
     <!-- Footer -->
     <footer class="page-footer">
         <div class="container">
-            <p>Issue Tracker - 2019</p>
-            <blockquote>
-                <footer>Version 1.0</footer>
-            </blockquote>
+            <div class="row footer-row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <p>Issue Tracker - 2019</p>
+                    <blockquote>
+                        <footer>Version 1.0</footer>
+                    </blockquote>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a href="{% url 'contact_us' %}" class="btn btn-info">Contact Us</a>
+                </div>
+            </div>
         </div>
     </footer>
 

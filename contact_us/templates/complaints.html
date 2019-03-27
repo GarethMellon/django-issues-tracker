@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% load bootstrap_tags %} 
+
+{% block page_title %} 
+    Customer Complaints
+{% endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        {% for complaint in complaints %}
+            <h4>User Email: </h4> {{ complaint.email }}
+            <br>
+            <h4>User Complains: </h4> {{ complaint.details }}
+            <hr>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock %}

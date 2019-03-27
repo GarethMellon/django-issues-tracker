@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'dashboard',
     'tickets',
     'dev_area',
+    'contact_us',
     'storages',
 ]
 

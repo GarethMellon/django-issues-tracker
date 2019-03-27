@@ -22,6 +22,7 @@ from dashboard.views import dashboard_page, charge
 from accounts import urls as accounts_urls
 from tickets import urls as tickets_urls
 from dev_area import urls as dev_area_urls
+from contact_us import urls as contact_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,8 +30,8 @@ urlpatterns = [
     url(r'^accounts/', include(accounts_urls)),
     url(r'^tickets/', include(tickets_urls)),
     url(r'^development/', include(dev_area_urls)),
-    url('charge/(?P<id>\d+)/(?P<up_vote_flag>[\w.@+-]+)', charge, name='charge')
-
+    url('charge/(?P<id>\d+)/(?P<up_vote_flag>[\w.@+-]+)', charge, name='charge'),
+    url(r'^contact/', include(contact_urls)),
 ]
 
 if settings.DEBUG:

@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans');
 
-footer {
-    color: #FDFFFC;
-    margin-top: 10px;
-}
-
 body {
     background-color: #011627;
 }
 
+h2, h3, h4, h5 {
+    display: inline-flex;
+}
 
 form {
     width: 90%;
@@ -16,6 +14,18 @@ form {
     margin-left: 15px;
 }
 
+/* footer styles */
+footer {
+    color: #FDFFFC;
+    margin-top: 10px;
+}
+
+.page-footer {
+    margin-top: 10px;
+}
+.footer-row{
+    margin-top: 20px;
+}
 
 /* narbar styles */
 

@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% load bootstrap_tags %} 
+
+{% block page_title %} 
+    Contact Us
+{% endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        
+        <div class="row">
+            <p>Click the email button to contact us via email. <a class="btn btn-default" href="mailto:issue.tracker.django.project@gmail.com">Email</a></p>
+            <hr>
+            <p>Or contact us by filling out the form below:</p>
+        </div>
+        
+        <form method="POST">
+            {% csrf_token %} 
+            
+            {{ form | as_bootstrap }}
+            
+            <input class="btn btn-submit" type="submit" value="Submit" name="Submit"/>
+            <input class="btn btn-back" type=button value="Back" onClick="javascript:history.go(-1);">
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
