@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from tickets.models import Ticket
+from tickets.helpers import save_form
 from tickets.forms import TicketStagingForm, TicketForm
 
 # Create your views here.
@@ -55,10 +56,15 @@ def dev_area(request):
 
 def dev_ticket(request, id):
     """
-    this view will return a dev ticket
+    this view will return a dev ticket and allow us to edit changes to a dev ticket
     """
     ticket = get_object_or_404(Ticket, pk=id)
-    form = TicketForm(instance=ticket)
+    
+    if request.method == "POST":
+        form = TicketForm(request.POST, request.FILES, instance=ticket)
+        save_form(request, form, ticket, "edit")
+        return redirect("dev_area")
+    else:
+        form = TicketForm(instance=ticket)
     
     return render(request, "development-ticket.html", {'form': form, 'ticket': ticket})
-

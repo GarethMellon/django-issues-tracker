@@ -82,6 +82,13 @@ footer,
     font-size: large;
 }
 
+/* Ui Messages */
+
+.messages {
+    margin-top: 60px;
+    color: #ffffff;
+}
+
 /* Dashboard */
 
 .jumbotron {
@@ -89,7 +96,7 @@ footer,
 }
 
 .main-content {
-    margin-top: 90px;
+    margin-top: 60px;
 }
 
 .ticket {

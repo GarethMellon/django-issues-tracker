@@ -11,6 +11,7 @@ def save_form(request, form, ticket, email_type):
     if form.is_valid:
         try:
             form.save()
+            messages.success(request, "Your request has been submitted.  Thank you.")
             if email_type =='edit':
                 send_edit_ticket_email(request, ticket)
             elif email_type =='new':
@@ -21,7 +22,6 @@ def save_form(request, form, ticket, email_type):
                 send_comment_email(request, ticket)
         except:
             messages.error(request, "There was an error submitting you're request.  Please contact support")
-            return redirect('/')
 
 """ Function to up vote a ticket """
 def up_vote_ticket(request ,ticket):

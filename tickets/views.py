@@ -20,12 +20,8 @@ def view_ticket(request, id):
 
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES, instance=ticket)
-        if request.user.is_authenticated:
-            save_form(request, form, ticket, 'edit')
-            return redirect("/")
-        elif request.user.is_anonymous:
-            save_form(request, form, ticket, 'edit')
-            return redirect("/")
+        save_form(request, form, ticket, 'edit')
+        return redirect("/")
     else:
         form = TicketForm(instance=ticket)
         

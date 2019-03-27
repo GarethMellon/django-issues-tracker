@@ -1,6 +1,4 @@
-{% load staticfiles %} 
-
-{% load bootstrap  %}
+{% load staticfiles %} {% load bootstrap %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,14 +58,16 @@
         </div>
     </nav>
 
+
+    <!-- Messages placeholder -->
     {% if messages %}
-    <div class="alert alert-success">
-        <div class="messages">
-            {% for message in messages %} {{ message }} {% endfor %}
-        </div>
-    </div>
-    {% endif %} 
-    
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <!-- info bar for dev log in flavor text -->
     {% if user.is_anonymous %}
     <div class="container info-bar">
