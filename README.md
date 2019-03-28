@@ -1,4 +1,4 @@
-# Your Project's Name
+# Issue Tracker for Unicorn App
 
 The Issue Tracker project is a public facing app.  Allowing a user to log bugs and request new features for their given app.
 The app has alow a dev facing component which allows a dev to accept / reject which ticket they would like to work on, and update tickets.
