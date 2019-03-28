@@ -5,7 +5,7 @@ This doc will lead into the creation of User Stories and tickets which will be a
 
 ***ENTITIES***
 
-We have two types of users.  A DEV and a USER.  A DEv user requires a log in, and normal using does not.
+We have two types of users.  A DEV and a USER.  A DEV user requires a log in, and normal using does not.
 
 - DEV user
 -- Can view the public facing ticket dashboard.
@@ -56,18 +56,16 @@ COMMENT Model
 Before a ticket is viewable on the dashboard.  A DEV user must accept or reject a ticket.  New tickets that are submitted by a user are displayed where.  
 
 
-
 *** DASHBOARD ***
 
-The DASHBOARD is the main landing page for the application.  We will show a list of tickets, top 10, most upvoted, etc.
+The DASHBOARD is the main landing page for the application.  We will show a list of tickets, most upvoted, etc.
 When you are logged in we treate the user as a DEV.  Otherwise we see the user as a USER
 
 points to show on the DASHBOARD
-- Show top 10 open features ordered by most voted, then priority, created date
-- Show top 10 open features ordered by most voted, then priority, created date
+- Show open features ordered by most voted, created date
+- Show open features ordered by most voted, created date
 - date filter by date 
 - Search by ticket id.
-- add graphs where possible.
 - can open a ticket, view updates and add user comments (as a USER)
 - can open a ticket, view updates and edit tickets (as a DEV)
 

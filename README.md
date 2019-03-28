@@ -1,81 +1,121 @@
 # Your Project's Name
 
-One or two paragraphs providing an overview of your project.
-
-Essentially, this part is your sales pitch.
+The Issue Tracker project is a public facing app.  Allowing a user to log bugs and request new features for their given app.
+The app has alow a dev facing component which allows a dev to accept / reject which ticket they would like to work on, and update tickets.
  
 ## UX
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+UX wireframes located in /planning/wireframes
+There was some minor changes in the final UI to allow for solutions for certain bugs and defects. There is a image of colors.io for the UI color scheme.
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+User stories located in /planning/user_stories
+They describe some basic actions and featur for users in the app. 
+
+We have a high level scope doc o help plan out tickets and User Stories
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+As a user they can
+- create new bugs
+- create new featues
+- view comments on a tickey
+- add a new comment
+- up-vote a bug or a feature
+- submit a payment via stripe
+- use the contact us open to contact the dev team
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+as a dev they can
+- log in as a dev user
+- create new bugs
+- create new featues
+- view comments on a tickey
+- add a new comment
+- up-vote a bug or a feature
+- accept or reject a ticket for work.
+- update a tickets status and close it if needed.
 
 ### Features Left to Implement
-- Another feature idea
+- Date filter by date.
+- Search by ticket id.
+- pagination on dashboard
+- add UI driven testing via Selenium (https://www.guru99.com/selenium-python.html)
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+- [HTML]
+    - Was used to build the main pages.
+
+- [CSS]
+    - custom styling of pages.
 
 - [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+    - used for some interactive elemens on forms and to hide some fields.
+
+- [JaveScript](https://jquery.com)
+    - as part of JQuery.
+
+- [Bootstrap](https://jquery.com)
+    - for the main styling template.
+
+- [Django v1.11](https://jquery.com)
+    - for serving webpages to users and interfacting with the DB.
+
+- [Python 3](https://jquery.com)
+    - as part of Django.
+
+- [SQLite3](https://jquery.com)
+    - Used on the local build of the app for testing.
+
+- [PostgreSQL](https://jquery.com)
+    - Used on the live version of the app.
+
+- [Heroku](https://jquery.com)
+    - Hosting the live app.
+
+- [GIT](https://jquery.com)
+    - For version control while developing.
+
+- [GitHub](https://jquery.com)
+    - project files hosted here.
+
+- [Amazon Web Services / S3](https://jquery.com)
+    - for serving static files and media files.
+
+- [Stripe](https://jquery.com)
+    - for payment processing
+
 
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+Tests are out lined in the user stories.  They are used for manual testing and will be used as part of creating Selenium testing via pythong in a later sprint.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+Reused Code: The accounts sections was inported from an older project.  Large sections where striped out as they where not requried for this project and other areas where altered as needed.
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+All other cide is orginal.
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+Imported information like secret keys and other environment variables are hidden from the app.  Installing the app locally  will require an env file which needs to be provided seperatly.  With out this the app will not run locally.
 
+No aditional changes are required to run the app on a live environment.
+
+The app itself it devided into different apps, which are named after the behaviore held withint each app.
+- accounts
+- contact_us
+- dashboard
+- dev_area
+- issue_tracker (project app)
+- tickets
 
 ## Credits
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+No text or information was copied from external sources.
 
 ### Media
-- The photos used in this site were obtained from ...
+No media from external sources where used.
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+No Acknowledgements are required
