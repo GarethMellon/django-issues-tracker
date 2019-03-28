@@ -13,6 +13,8 @@ They describe some basic actions and featur for users in the app.
 
 We have a high level scope doc o help plan out tickets and User Stories
 
+
+
 ## Features
 
 As a user they can
@@ -48,42 +50,45 @@ as a dev they can
 - [CSS]
     - custom styling of pages.
 
-- [JQuery](https://jquery.com)
+- [JQuery]
     - used for some interactive elemens on forms and to hide some fields.
 
-- [JaveScript](https://jquery.com)
+- [JaveScript]
     - as part of JQuery.
 
-- [Bootstrap](https://jquery.com)
+- [Bootstrap]
     - for the main styling template.
 
-- [Django v1.11](https://jquery.com)
+- [Django v1.11]
     - for serving webpages to users and interfacting with the DB.
 
-- [Python 3](https://jquery.com)
+- [Python 3]
     - as part of Django.
 
-- [SQLite3](https://jquery.com)
+- [SQLite3]
     - Used on the local build of the app for testing.
 
-- [PostgreSQL](https://jquery.com)
+- [PostgreSQL]
     - Used on the live version of the app.
 
-- [Heroku](https://jquery.com)
+- [Heroku]
     - Hosting the live app.
 
-- [GIT](https://jquery.com)
+- [GIT]
     - For version control while developing.
 
-- [GitHub](https://jquery.com)
+- [GitHub]
     - project files hosted here.
 
-- [Amazon Web Services / S3](https://jquery.com)
+- [Amazon Web Services / S3]
     - for serving static files and media files.
 
-- [Stripe](https://jquery.com)
+- [Stripe]
     - for payment processing
 
+- [Trello]
+    - https://trello.com/b/aKFZcGf5/issuetracker
+    - Usedd to plan and manage work
 
 
 ## Testing
